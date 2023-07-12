@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+    <title>SpeechSynthesisUtterance-Example</title>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+
+<h1>Aşağıda bulunan alana bir cümle giriniz.</h1>
+<textarea id="textForVoice" rows="5" cols="50">İşte bu örnek bir cümle, hemen okuyorum.</textarea>
+<button onclick="speakNow()">Yazıyı oku</button>
+
+
+<script>
+    function speakNow() {
+    	let text=document.getElementById('textForVoice').value;
+        const message = new SpeechSynthesisUtterance(text);
+        const voices = speechSynthesis.getVoices().filter(voice => voice.lang === "tr");
+        message.voice = voices[0];
+        message.pitch = 0;
+        message.rate = 0.8;
+        speechSynthesis.speak(message);
+    }
+</script>
+</body>
+</html>
